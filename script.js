@@ -1,5 +1,5 @@
 function getWeather() {
-    const apiKey = '8b558b9d24c0009800635bfcb8b411b9';
+    const apiKey = APIKEY;
     const city = document.getElementById('city').value;
 
     if(!city) { //if city is empty, show alert
