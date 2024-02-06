@@ -1,5 +1,10 @@
+// require('dotenv').config();
+
 function getWeather() {
-    const apiKey = 'APIKEY'; //change before running this program
+    
+    // console.log(process.env.APIKEY);
+
+    const apiKey = "8b558b9d24c0009800635bfcb8b411b9"; //change before running this program
     const city = document.getElementById('city').value;
 
     if(!city) { //if city is empty, show alert
@@ -33,23 +38,35 @@ function getWeather() {
 
 function displayWeather(data) {
     const tempDivInfo = document.getElementById('temp-div');
-    const weatherInfoDiv = document.getElementById('weather-info');
+    const weatherDescDiv = document.getElementById('weather-desc');
     const weatherIcon = document.getElementById('weather-icon');
-    const hourlyForecastDiv = document.getElementById('hourly-forecast');
+    const weatherDetails = document.querySelector('.weather-details');
+    const humidity = document.querySelector('.weather-details .humidity span');
+    const wind = document.querySelector('.weather-details .wind span');
+    const hourlyForecastDiv = document.querySelector('.hourly-forecast');
 
     // clear previous content
-    weatherInfoDiv.innerHTML = '';
+    weatherDescDiv.innerHTML = '';
+    humidity.innerHTML = '';
+    wind.innerHTML = '';
     hourlyForecastDiv.innerHTML = '';
     tempDivInfo.innerHTML = '';
 
     if(data.cod === '404') {
-        weatherInfoDiv.innerHTML = `<p>${data.message}</p>`
+        weatherDescDiv.innerHTML = `<p>${data.message}</p>`
+        weatherDetails.classList.remove('active');
     } else {
+        weatherDetails.classList.add('active');
+
         const cityName = data.name;
         const temperature = Math.round(data.main.temp - 273.15); //convert to celsius
         const description = data.weather[0].description;
         const iconCode = data.weather[0].icon;
+        const humidPercent = data.main.humidity;
+        const windSpeed = data.wind.speed;
         const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+
+        // alert("humid: " + humidPercent + ", wind: " + windSpeed);
 
         const temperatureHTML = `
             <p>${temperature}°C</p>
@@ -60,8 +77,20 @@ function displayWeather(data) {
             <p>${description}</p>
         `;
 
+        const humidityHTML = `
+            ${humidPercent}%
+        `;
+
+        const windHTML = `
+            ${windSpeed} km/h
+        `;
+
+        // weatherDetails.classList.add('active');
+
         tempDivInfo.innerHTML = temperatureHTML;
-        weatherInfoDiv.innerHTML = weatherHTML;
+        weatherDescDiv.innerHTML = weatherHTML;
+        humidity.innerHTML = humidityHTML;
+        wind.innerHTML = windHTML;
         weatherIcon.src = iconUrl;
         weatherIcon.alt = description;
         
@@ -70,7 +99,7 @@ function displayWeather(data) {
 }
 
 function displayHourlyForecast(hourlyData) {
-    const hourlyForecastDiv = document.getElementById('hourly-forecast');
+    const hourlyForecastDiv = document.querySelector('.hourly-forecast');
     const next24hours = hourlyData.slice(0, 8); //slice it into 3-hour intervals for the next 24 hours
 
     next24hours.forEach(item => { //forEach not foreach (foreach will cause error)

@@ -1,52 +1,82 @@
 body {
     background-color: #aecae9;
+    /* background: url('images/bts.jpeg'); */
+    background-size: cover;
+    background-position: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /*vh = vertical height*/
+    min-height: 100vh; /*vh = vertical height*/
     margin: 0;
+    padding: 0;
 }
 
 #weather-container {
-    background: rgba(255, 255, 255, 0.3);
-    max-width: 400px; /* px = pixels */
-    padding: 20px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    width: 400px; /* px = pixels */
+    height: 610px;
+    padding: 20px; /* top, right, bottom, left */
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
-}
+} 
 
 h2, label, p {
     color: #000;
     margin: 8px 0;
 }
 
-input {
-    width: calc(100% - 16px);
-    padding: 8px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    border: 1px solid white;
+#search-box {
+    position: relative;
     margin-top: 20px;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
 }
 
-button {
-    background: #a4c1e4;
+#search-box i {
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+}
+
+#search-box input {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    padding: 0 48px 0 42px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    font-size: 18px;
+    background: transparent;
+} 
+
+/* .search-box input::placeholder {
+    color: lightgrey;
+    text-transform: capitalize;
+} */
+
+#search-box button { /* the search icon is the button */
+    position: absolute;
+    right: 0;
+    background: transparent;
     color: black;
     padding: 10px;
     border: none;
-    border-radius: 10px;
     cursor: pointer; /* when cursor hovers over the button, the cursor turns into a pointer*/
-    margin-top: 20px;
-    width: 100px;
-    font-size: 15px;
-}
-
-button:hover {
-    background: #72a4d6;
+    width: 40px;
+    height: 100%;
+    font-size: 20px;
+    padding: 0 40px 0 5px;
 }
 
 #temp-div p {
@@ -54,8 +84,56 @@ button:hover {
     margin-top: -30px; /* makes it blend with whatever is above it */
 }
 
-#weather-info {
+#weather-desc {
     font-size: 20px;
+    text-transform: capitalize;
+}
+
+.weather-details {
+    position: relative;
+    /* bottom: 40px; */
+    width: 100%;
+    padding: 20px 0 10px 0;
+    display: flex;
+}
+
+.weather-details .humidity,
+.weather-details .wind {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.weather-details .humidity {
+    padding-left: 20px;
+}
+
+.weather-details .wind {
+    padding-right: 20px;
+}
+
+.weather-details i {
+    font-size: 56px;
+    margin-right: 10px;
+}
+
+.weather-details span {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.weather-details p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.weather-details {
+    visibility: hidden;
+}
+
+.weather-details.active {
+    visibility: visible;
 }
 
 #weather-icon {
@@ -66,8 +144,9 @@ button:hover {
     display: none;
 }
 
-#hourly-forecast {
-    margin-top: 50px;
+.hourly-forecast {
+    margin-top: 20px;
+    padding-bottom: 10px;
     overflow-x: auto;
     white-space: nowrap;
     display: flex;

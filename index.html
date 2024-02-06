@@ -5,21 +5,47 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Simple Weather App</title>
         <link rel="stylesheet" href="./style.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
 
     <body>
         <div id="weather-container">
             <h2>Weather App</h2> <!-- title of the app -->
-            <input type="text" id="city" placeholder="Enter city">
-            <button onclick="getWeather()">Search</button>
-
+            <div id="search-box">
+                <i class='bx bxs-map'></i>
+                <input type="text" id="city" placeholder="Enter city">
+                <button class='bx bx-search' onclick="getWeather()"></button>
+            </div>
+        
             <img id="weather-icon" alt="Weather Icon">
 
             <div id="temp-div"></div> <!-- hold the temperature info -->
 
-            <div id="weather-info"></div>
+            <div id="weather-desc"></div>
 
-            <div id="hourly-forecast"></div>
+            <div class="weather-details">
+                <div class="humidity">
+                    <i class='bx bx-water'></i>
+                    <div id="text">
+                        <div id="info-humidity">
+                            <span>0%</span>
+                        </div>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+
+                <div class="wind">
+                    <i class='bx bx-wind'></i>
+                    <div id="text">
+                        <div id="info-wind">
+                            <span>0 km/h</span>
+                        </div>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hourly-forecast"></div>
         </div>
         <script src="./script.js"></script>
     </body>
