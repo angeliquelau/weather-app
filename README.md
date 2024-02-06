@@ -2,4 +2,6 @@
 
 This app is done using HTML, Javascript and CSS.
 
-Tutorial: https://www.youtube.com/watch?v=74IOjtVvExY
+Tutorials followed: 
+1. https://www.youtube.com/watch?v=74IOjtVvExY
+2. https://www.youtube.com/watch?v=2jjR-iGxVYM&t=681s
